@@ -33,7 +33,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = testTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = testTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TestTableViewCell
+        cell.testTableViewCellDelegate = self
         cell.backgroundColor = .green
         return cell
     }
@@ -43,5 +44,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension ViewController: TestTableViewCellDelegate {
+    func tappedPleaseTapButton() {
+        print("2: tappedPleaseTapButton in ViewController")
+        let secondViewController = SecondViewController()
+        navigationController?.pushViewController(secondViewController, animated: true)
+    }
 }
 
